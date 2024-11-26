@@ -75,11 +75,11 @@ format_bolt(bolt_file = "data/HIGH_stats",
             pheno_file = "data/first_order_pheno.txt",
             info_file = "data/snp.info",
             hwe_file = "data/MCTFR.hwe",
-            output_file = paste0("output/MCTFR.BOTH.association-results.", Sys.Date(), ".txt"))
+            output_file = paste0("output/MCTFR.HIGH.association-results.", Sys.Date(), ".txt"))
 
 format_bolt(bolt_file = "data/LOW_stats",
             pheno_file = "data/second_order_pheno.txt",
             info_file = "data/snp.info",
             hwe_file = "data/MCTFR.hwe",
-            output_file = paste0("output/MCTFR.BOTH.association-results.", Sys.Date(), ".txt"))
+            output_file = paste0("output/MCTFR.LOW.association-results.", Sys.Date(), ".txt"))
 
