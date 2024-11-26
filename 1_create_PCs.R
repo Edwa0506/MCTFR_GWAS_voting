@@ -22,6 +22,15 @@ info_scores |>
   write.table("data/genotyped_snps.txt", sep = " ",
               col.names = FALSE, row.names = FALSE, quote =FALSE)
 
+# Calc HWE
+system2("./plink",
+        args = c("--bfile", "data/genotypes_rsid",
+                 "--hardy", 
+                 "--out", "data/MCTFR"),
+        stdout = TRUE,
+        stderr = TRUE)
+
+# Use non-imputed SNPs to finding related individuals faster
 system2("./plink",
         args = c("--bfile", "data/genotypes_rsid",
                  "--extract", "data/genotyped_snps.txt",
@@ -30,7 +39,7 @@ system2("./plink",
         stdout = TRUE,
         stderr = TRUE)
 
-
+# Find related individuals (used to exclude from calculating PC eigenvectors)
 system2("./plink",
         args = c("--bfile", "data/genotypes_rsid_notimputed",
                  "--rel-cutoff", "0.025",
@@ -56,7 +65,7 @@ fam_file |> select(FID, IID, group) |>
 
 #FID, IID, cluster name 
 
-
+# Prune SNPs to make PCs better and faster
 system2("./plink",
         args = c("--bfile", "data/genotypes_rsid",
                  "--maf", "0.01",
@@ -74,7 +83,7 @@ system2("./plink",
         stdout = TRUE,
         stderr = TRUE)
 
-
+# Calculate PCs
 system2("./plink",
         args = c("--bfile",  "data/genotypes_rsid_ld_pruned_pca",
                  "--within", "data/related_cluster_file.txt",

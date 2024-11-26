@@ -71,16 +71,16 @@ first_order_pheno <- map(1:length(first_order), \(x) as.formula(paste(all_votes[
 cbind.data.frame(data$IDYRFAM, data$ID, first_order_pheno) |> 
   setNames(c("FID", "IID", "pheno")) |>
   drop_na(pheno) |>
-  write.table("data/first_order_pheno.txt", sep = " ", row.names = FALSE, col.names = FALSE)
+  write.table("data/first_order_pheno.txt", sep = " ", row.names = FALSE, col.names = TRUE, quote = FALSE)
 
 cbind.data.frame(data$IDYRFAM, data$ID, second_order_pheno) |> 
   setNames(c("FID", "IID", "pheno")) |>
   drop_na(pheno) |>
-  write.table("data/first_order_pheno.txt", sep = " ", row.names = FALSE, col.names = FALSE)
+  write.table("data/second_order_pheno.txt", sep = " ", row.names = FALSE, col.names = TRUE, quote = FALSE)
 
 cbind.data.frame(data$IDYRFAM, data$ID, all_vote_pheno) |> 
   setNames(c("FID", "IID", "pheno")) |>
   drop_na(pheno) |>
-  write.table("data/pheno.txt", sep = " ", row.names = FALSE, col.names = FALSE)
+  write.table("data/pheno.txt", sep = " ", row.names = FALSE, col.names = TRUE, quote = FALSE)
 
         
